@@ -23,6 +23,9 @@ public class KeyboardListener : MonoBehaviour {
     }
 
 	void Update () {
+        if (listener == null)
+            return;
+
         // Checks action
         if (Input.GetKeyUp(KeyCode.Return))
         {

@@ -35,13 +35,14 @@ public class ProjectileHandler : MonoBehaviour {
     {
         if (remainingLife <= 0 || collisionChecker.WillCollide(direction))
         {
+            GameObject collider = collisionChecker.GetCollidedObject(direction);
+            if (collider != null && collider.GetComponent<CharacterManager>() != null)
+            {
+                collider.GetComponent<CharacterManager>().TakeHit();
+            }
             DestroyImmediate(gameObject);
             return;
         }
-
-        //Vector2 pos = transform.position;
-        //pos += direction * speed * Time.deltaTime;
-        //transform.position = new Vector3(pos.x, pos.y, transform.position.z);
 
         float x = Mathf.Lerp(initialPos.x, finalPos.x, ratio);
         float y = Mathf.Lerp(initialPos.y, finalPos.y, ratio);

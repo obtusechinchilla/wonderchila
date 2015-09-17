@@ -41,23 +41,9 @@ public class CharacterManager : MonoBehaviour, KeyListener {
         }
 	}
 
-    void KeyListener.Move(int direction)
+    public virtual void TakeHit()
     {
-        if (movementCooldown > 0)
-            return;
-
-        currentDirection = GetDirection(direction);
-
-        bool collided = collisionChecker.WillCollide(currentDirection);
-        if (collided)
-            return;
-
-        // Defines the variables that will realize the movement
-        movementCooldown = defaultMovementCooldown;
-        initialPosition = transform.position;
-        finalPosition = new Vector3(initialPosition.x + currentDirection.x, initialPosition.y + currentDirection.y, initialPosition.z);
-        multiplier = 1 / defaultMovementCooldown;
-        ratio = 0;
+        DestroyImmediate(gameObject);
     }
 
     protected Vector2 GetDirection(int direction)
@@ -83,6 +69,25 @@ public class CharacterManager : MonoBehaviour, KeyListener {
         return new Vector2(horizontal, vertical);
     }
 
+    void KeyListener.Move(int direction)
+    {
+        if (movementCooldown > 0)
+            return;
+
+        currentDirection = GetDirection(direction);
+
+        bool collided = collisionChecker.WillCollide(currentDirection);
+        if (collided)
+            return;
+
+        // Defines the variables that will realize the movement
+        movementCooldown = defaultMovementCooldown;
+        initialPosition = transform.position;
+        finalPosition = new Vector3(initialPosition.x + currentDirection.x, initialPosition.y + currentDirection.y, initialPosition.z);
+        multiplier = 1 / defaultMovementCooldown;
+        ratio = 0;
+    }
+    
     void KeyListener.Activate()
     {
         GameObject obj = collisionChecker.GetCollidedObject(currentDirection);
