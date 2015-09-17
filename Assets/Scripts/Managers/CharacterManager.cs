@@ -5,7 +5,7 @@ using System.Collections;
 [RequireComponent(typeof(CollisionChecker))]
 public class CharacterManager : MonoBehaviour, KeyListener {
 
-    public LayerMask collisionMask;
+    public GameObject axePrefab;
 
     float defaultMovementCooldown = 0.25f;
     float movementCooldown = 0;
@@ -46,6 +46,22 @@ public class CharacterManager : MonoBehaviour, KeyListener {
         if (movementCooldown > 0)
             return;
 
+        currentDirection = GetDirection(direction);
+
+        bool collided = collisionChecker.WillCollide(currentDirection);
+        if (collided)
+            return;
+
+        // Defines the variables that will realize the movement
+        movementCooldown = defaultMovementCooldown;
+        initialPosition = transform.position;
+        finalPosition = new Vector3(initialPosition.x + currentDirection.x, initialPosition.y + currentDirection.y, initialPosition.z);
+        multiplier = 1 / defaultMovementCooldown;
+        ratio = 0;
+    }
+
+    Vector2 GetDirection(int direction)
+    {
         int horizontal = 0;
         int vertical = 0;
         switch (direction)
@@ -64,18 +80,7 @@ public class CharacterManager : MonoBehaviour, KeyListener {
                 break;
         }
 
-        currentDirection = new Vector2(horizontal, vertical);
-
-        bool collided = collisionChecker.WillCollide(currentDirection);
-        if (collided)
-            return;
-
-        // Defines the variables that will realize the movement
-        movementCooldown = defaultMovementCooldown;
-        initialPosition = transform.position;
-        finalPosition = new Vector3(initialPosition.x + horizontal, initialPosition.y + vertical, initialPosition.z);
-        multiplier = 1 / defaultMovementCooldown;
-        ratio = 0;
+        return new Vector2(horizontal, vertical);
     }
 
     void KeyListener.Activate()
@@ -89,5 +94,12 @@ public class CharacterManager : MonoBehaviour, KeyListener {
             //    npc.Activate();
             //}
         }
+    }
+
+    void KeyListener.Attack(int direction)
+    {
+        GameObject axe = Instantiate(axePrefab);
+        axe.transform.position = transform.position;
+        axe.GetComponent<ProjectileHandler>().direction = GetDirection(direction);
     }
 }

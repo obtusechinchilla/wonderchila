@@ -3,6 +3,7 @@ using System.Collections;
 
 public class CollisionChecker : MonoBehaviour {
 
+    public LayerMask layerMask;
     Vector2 dir; // debug only
 
 	public bool WillCollide(Vector2 direction) {
@@ -35,7 +36,7 @@ public class CollisionChecker : MonoBehaviour {
 
     Collider2D CastRay(Vector2 direction)
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, 0.5f);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, 0.5f, layerMask);
         if (hit != null && hit.collider != null)
         {
             if (hit.collider.isTrigger)

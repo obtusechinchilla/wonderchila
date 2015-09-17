@@ -1,9 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" backgroundcolor="#272419" nextobjectid="1">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" backgroundcolor="#272419" nextobjectid="120">
+ <properties>
+  <property name="Title" value="Library1"/>
+ </properties>
  <tileset firstgid="1" name="Tileset" tilewidth="32" tileheight="32" tilecount="100">
   <image source="../Resources/tiles_reference.png" width="320" height="320"/>
+  <tile id="1">
+   <properties>
+    <property name="collides" value="true"/>
+   </properties>
+  </tile>
+  <tile id="6">
+   <properties>
+    <property name="collides" value="true"/>
+   </properties>
+  </tile>
  </tileset>
- <layer name="Camada de Tiles 1" width="50" height="50">
+ <layer name="Ground" width="50" height="50">
   <data>
    <tile gid="0"/>
    <tile gid="0"/>

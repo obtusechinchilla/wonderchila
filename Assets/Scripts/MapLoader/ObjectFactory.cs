@@ -13,10 +13,12 @@ class ObjectFactory
         
         if (objectGroup.name == "Collisions")
         {
-            newObject = new GameObject();
-            newObject.name = objectGroup.name;
-            newObject.AddComponent<BoxCollider2D>().size = new Vector2(someMapObject.width / scale, someMapObject.height / scale);
-            newObject.GetComponent<BoxCollider2D>().offset = new Vector2(someMapObject.width / 2 / scale - 0.5f, someMapObject.height / 2 / scale - 0.5f);
+            return null;
+
+            //newObject = new GameObject();
+            //newObject.name = objectGroup.name;
+            //newObject.AddComponent<BoxCollider2D>().size = new Vector2(someMapObject.width / scale, someMapObject.height / scale);
+            //newObject.GetComponent<BoxCollider2D>().offset = new Vector2(someMapObject.width / 2 / scale - 0.5f, someMapObject.height / 2 / scale - 0.5f);
         }
         else if (someMapObject.properties != null)
         {

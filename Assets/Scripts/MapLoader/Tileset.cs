@@ -47,6 +47,9 @@ namespace MapReader {
 
 			loadTexture ();
 			loadTiles ();
+
+            XmlNodeList properties = node.SelectNodes("tile");
+            loadProperties(properties);
 		}
 
 		private void loadTexture() {
@@ -69,6 +72,27 @@ namespace MapReader {
 				}
 			}
 		}
+
+        private void loadProperties(XmlNodeList nodes)
+        {
+            if (nodes == null)
+                return;
+
+            for (int i = 0; i < nodes.Count; i++)
+            {
+                XmlNode node = nodes[i];
+                int gid = int.Parse(node.Attributes["id"].Value) + 1;
+                XmlNodeList props = node["properties"].SelectNodes("property");
+                foreach (XmlNode n in props)
+                {
+                    if (n.Attributes["name"].Value == "collides" &&
+                        n.Attributes["value"].Value == "true")
+                    {
+                        tiles[gid].collides = true;
+                    }
+                }
+            }
+        }
 		
 		public int getFirstGid() {
 			return firstGid;

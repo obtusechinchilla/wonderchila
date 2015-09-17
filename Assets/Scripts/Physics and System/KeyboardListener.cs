@@ -28,6 +28,23 @@ public class KeyboardListener : MonoBehaviour {
         {
             listener.Activate();
         }
+        else if (Input.GetKeyUp(KeyCode.UpArrow))
+        {
+            listener.Attack(0);
+        }
+        else if (Input.GetKeyUp(KeyCode.LeftArrow))
+        {
+            listener.Attack(3);
+        }
+        else if (Input.GetKeyUp(KeyCode.DownArrow))
+        {
+            listener.Attack(2);
+        }
+        else if (Input.GetKeyUp(KeyCode.RightArrow))
+        {
+            listener.Attack(1);
+        }
+
 
         // Doesn't process keyboard events
         if (waitKeyRelease)
@@ -61,6 +78,7 @@ public class KeyboardListener : MonoBehaviour {
 
 public interface KeyListener
 {
+    void Attack(int direction);
     void Activate();
     void Move(int direction);
 }

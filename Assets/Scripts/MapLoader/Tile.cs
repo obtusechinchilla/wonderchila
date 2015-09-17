@@ -14,6 +14,7 @@ namespace MapReader
 {
 	public class Tile
 	{
+        public bool collides;
 		public Rect area;
 		int gid;
 

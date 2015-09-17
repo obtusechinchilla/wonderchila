@@ -117,6 +117,11 @@ namespace MapReader {
 						renderer.sortingLayerName = layer.name;
                         renderer.material = pixelSnapMaterial;
 
+                        if (tile.collides)
+                        {
+                            tileObject.AddComponent<BoxCollider2D>().size = new Vector2(1, 1);
+                            //tileObject.GetComponent<BoxCollider2D>().offset = new Vector2(0, 0);
+                        }
 					}
 				}
                 layerHeight -= 5;
