@@ -5,9 +5,9 @@ using System.Collections;
 [RequireComponent(typeof(CollisionChecker))]
 public class CharacterManager : MonoBehaviour, KeyListener {
 
-    public GameObject axePrefab;
+    public GameObject projectilePrefab;
 
-    float defaultMovementCooldown = 0.25f;
+    public float defaultMovementCooldown = 0.25f;
     float movementCooldown = 0;
 
     CollisionChecker collisionChecker;
@@ -60,7 +60,7 @@ public class CharacterManager : MonoBehaviour, KeyListener {
         ratio = 0;
     }
 
-    Vector2 GetDirection(int direction)
+    protected Vector2 GetDirection(int direction)
     {
         int horizontal = 0;
         int vertical = 0;
@@ -98,8 +98,9 @@ public class CharacterManager : MonoBehaviour, KeyListener {
 
     void KeyListener.Attack(int direction)
     {
-        GameObject axe = Instantiate(axePrefab);
-        axe.transform.position = transform.position;
-        axe.GetComponent<ProjectileHandler>().direction = GetDirection(direction);
+        GameObject projectile = Instantiate(projectilePrefab);
+        projectile.transform.position = transform.position;
+        projectile.GetComponent<ProjectileHandler>().direction = GetDirection(direction);
+        projectile.GetComponent<ProjectileHandler>().layerMask = collisionChecker.layerMask;
     }
 }

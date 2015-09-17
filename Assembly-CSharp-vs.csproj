@@ -46,8 +46,8 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\ProjectileHandler.cs" />
      <Compile Include="Assets\Scripts\Managers\CharacterManager.cs" />
+     <Compile Include="Assets\Scripts\Managers\PlayerManager.cs" />
      <Compile Include="Assets\Scripts\MapLoader\Layer.cs" />
      <Compile Include="Assets\Scripts\MapLoader\LayerTile.cs" />
      <Compile Include="Assets\Scripts\MapLoader\MapLoader.cs" />
@@ -59,9 +59,11 @@
      <Compile Include="Assets\Scripts\MapLoader\Tileset.cs" />
      <Compile Include="Assets\Scripts\Physics and System\Camera2DFollow.cs" />
      <Compile Include="Assets\Scripts\Physics and System\CollisionChecker.cs" />
+     <Compile Include="Assets\Scripts\Physics and System\EnemyController.cs" />
      <Compile Include="Assets\Scripts\Physics and System\KeyboardListener.cs" />
      <Compile Include="Assets\Scripts\Physics and System\PixelPerfectScale.cs" />
      <Compile Include="Assets\Scripts\Physics and System\TeleportToScript.cs" />
+     <Compile Include="Assets\Scripts\ProjectileHandler.cs" />
      <None Include="Assets\Maps\library1.xml" />
      <None Include="Assets\Maps\test_map.xml" />
  <Reference Include="UnityEngine.UI">

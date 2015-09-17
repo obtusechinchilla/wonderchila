@@ -4,6 +4,7 @@ using System.Collections;
 public class ProjectileHandler : MonoBehaviour {
 
     public Vector2 direction;
+    public LayerMask layerMask;
 
     CollisionChecker collisionChecker;
 
@@ -27,6 +28,7 @@ public class ProjectileHandler : MonoBehaviour {
         finalPos = new Vector3(initialPos.x + (distance * direction.x), initialPos.y + (distance * direction.y), transform.position.z);
 
         collisionChecker = GetComponent<CollisionChecker>();
+        collisionChecker.layerMask = layerMask;
     }
 
 	void Update ()
